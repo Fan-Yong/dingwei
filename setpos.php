@@ -9,14 +9,13 @@ if ($conn->connect_error) {
 }
 $t_lat = $_POST['lat'];
 $t_lng = $_POST['lng'];
+$t_address = $_POST['address'];
 
-//$t_lat = "bbbb";
-//$t_lng = "aaaa";
 if($t_lat !="" && $t_lng!="" ){
-        $sql="insert into axnc.test(lat,lng,dt) values(?,?,now())"; 
+        $sql="insert into axnc.test(lat,lng,address,dt) values(?,?,?,now())"; 
 	$stmt = $conn->prepare($sql);
 	$s=$t_lng.",".$t_lat;
-        $stmt->bind_param('ss',$t_lat,$t_lng );
+        $stmt->bind_param('sss',$t_lat,$t_lng,$t_address );
 
         if($stmt->execute()){
                 echo  "1";
