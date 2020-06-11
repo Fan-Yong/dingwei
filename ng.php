@@ -7,7 +7,7 @@ $conn->set_charset('utf8');
 if ($conn->connect_error) {
     die("数据库连接失败: " . $conn->connect_error);
 }
-$sql="select lat,lng,address,dt  from axnc.test order by id desc";
+$sql="select id,lat,lng,address,dt  from axnc.test order by id desc";
 $result = $conn->query($sql);
 ?>
 <head>
@@ -33,7 +33,7 @@ while($row = $result->fetch_assoc()) {
 	$h="http://api.map.baidu.com/marker?location=".$pos2."&title=".$row["address"]."&content=点击
 左下角'到这去',并根据提示打开百度app&output=html"
 ?>
-	<div class="div"><span><a href="<?php echo $h?>"><?php echo $row["address"]."<br>录入时间:".$row["dt"] ?></a></span></div>
+	<div class="div"><span><a href="<?php echo $h?>"><?php echo $row["address"]."</a><br>录入时间:".$row["dt"] ?>&nbsp;&nbsp;<a href="del.php?id=<?php echo $row["id"]?>">删除</a></span></div>
 <?php 
 }
 ?>	
