@@ -15,8 +15,8 @@ $t_lng = $_POST['lng'];
 if($t_lat !="" && $t_lng!="" ){
         $sql="insert into axnc.test(lat,lng,dt) values(?,?,now())"; 
 	$stmt = $conn->prepare($sql);
-	$s=$t_lat.",".$t_lng;
-        $stmt->bind_param('ss',$t_lat,$s );
+	$s=$t_lng.",".$t_lat;
+        $stmt->bind_param('ss',$t_lat,$t_lng );
 
         if($stmt->execute()){
                 echo  "1";
